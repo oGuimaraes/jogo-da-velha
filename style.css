@@ -1,0 +1,26 @@
+body{
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.tabuleiro{
+    background: -moz-linear-gradient(top, #d2ff52 0%, #91e842 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #d2ff52 0%,#91e842 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #d2ff52 0%,#91e842 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    width: 0;
+}
+
+h2{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#pos0,#pos1,#pos2,#pos3,#pos4,#pos5,#pos6,#pos7,#pos8{
+    border-top: 3px solid #999292;
+    border-left: 3px solid #999292;
+    border-right: 3px solid #efeded;
+    border-bottom: 3px solid #efeded;
+    background-size: 100%;
+    background-color: white;
+    height: 100px;
+    width: 100px;
+}
