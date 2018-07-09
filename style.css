@@ -3,9 +3,10 @@ body{
 }
 
 .tabuleiro{
-    background: -moz-linear-gradient(top, #d2ff52 0%, #91e842 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #d2ff52 0%,#91e842 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #d2ff52 0%,#91e842 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: #c3d9ff; /* Old browsers */
+    background: -moz-linear-gradient(top, #c3d9ff 0%, #b1c8ef 41%, #98b0d9 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #c3d9ff 0%,#b1c8ef 41%,#98b0d9 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #c3d9ff 0%,#b1c8ef 41%,#98b0d9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     width: 0;
 }
 
@@ -14,7 +15,7 @@ h2{
     margin-bottom: 5px;
 }
 
-#pos00,#pos01,#pos02,#pos10,#pos11,#pos12,#pos20,#pos21,#pos22{
+.cell{
     border-top: 3px solid #999292;
     border-left: 3px solid #999292;
     border-right: 3px solid #efeded;
@@ -22,5 +23,7 @@ h2{
     background-size: 100%;
     background-color: white;
     height: 100px;
+    margin-right: 5px;
+    margin-bottom: 5px;
     width: 100px;
 }
