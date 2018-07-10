@@ -14,7 +14,7 @@ h2{
     margin-bottom: 5px;
 }
 
-#pos00,#pos01,#pos02,#pos10,#pos11,#pos12,#pos20,#pos21,#pos22{
+.cell{
     border-top: 3px solid #999292;
     border-left: 3px solid #999292;
     border-right: 3px solid #efeded;
