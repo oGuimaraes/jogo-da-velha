@@ -69,54 +69,6 @@ function vezCpu() {
     }
 }
 
-
-/*  Player O CPU (Inacabado)
-
-function click(posicao_jogada){
-    
-    if(valida_posicao[posicao_jogada] == 0 && ha_vencedor == false){
-        if(player == 1) {
-            valida_posicao[posicao_jogada] = "bola";
-            document.getElementById("pos"+posicao_jogada).style.backgroundImage = 'url("images/bola.jpg")';
-            marca_posicao[posicao_jogada] = 'O';
-            player++;
-            jogadas++;
-            document.getElementById("vez").innerHTML = 'Vez de O';
-        } else {};
-    }   
-    fimDeJogo();
-
-    function vezCPU() {
-        if (player == 2){
-            var posCPU = Math.floor(Math.random() * 8)
-            console.log(posCPU+1);
-        
-            if (valida_posicao[posCPU] == false){
-                document.getElementById("pos"+posCPU).style.backgroundImage = 'url("images/Ois.jpg")';
-                document.getElementById("vez").innerHTML = 'Vez de O';
-                valida_posicao[posCPU] = "Ois";
-                marca_posicao[posicao_jogada] = 'O';
-                player--;
-                jogadas++;
-            }
-            else {
-                posCPU = Math.floor(Math.random() * 8)
-                document.getElementById("pos"+posCPU).style.backgroundImage = 'url("images/Ois.jpg")';
-                document.getElementById("vez").innerHTML = 'Vez de O';
-                valida_posicao[posCPU] = "Ois";
-                marca_posicao[posicao_jogada] = 'O';
-                player--;
-                jogadas++;    
-            }
-            fimDeJogo();
-            console.log(valida_posicao) 
-        }
-    }
-    vezCPU();
-}
-*/
-
-
 function fimDeJogo(){
 
     if
@@ -156,4 +108,5 @@ function fimDeJogo(){
 }
 
 
-  
+/* CPU Intelligence
+
