@@ -14,12 +14,13 @@ var marca_posicao =  [
 ];
 
 function clic(coluna,linha){
+
     
-    if(valida_posicao[coluna][linha] == 0 && ha_vencedor == false){
+    if(valida_posicao[linha][coluna] == 0 && ha_vencedor == false){
         if(player == 1) {
-            valida_posicao[coluna][linha] = "bola";
+            valida_posicao[linha][coluna] = "bola";
             document.getElementById("pos"+coluna+linha).style.backgroundImage = 'url("images/bola.jpg")';
-            marca_posicao[coluna][linha] = 'O';
+            marca_posicao[linha][coluna] = 'O';
             player++;
             jogadas++;
             console.log(jogadas);
@@ -38,21 +39,25 @@ function clic(coluna,linha){
                 function getRandomInt(min, max) {
                     min = Math.ceil(min);
                     max = Math.floor(max);
-                    colunaRandom = Math.floor(Math.random() * (max - min)) + min;
                     linhaRandom = Math.floor(Math.random() * (max - min)) + min;
+                    colunaRandom = Math.floor(Math.random() * (max - min)) + min;
                 }
     
-                if (valida_posicao[colunaRandom][linhaRandom] == false) { //Se a posição estiver vazia, faça:
-                    valida_posicao[colunaRandom][linhaRandom] = "xis"; // Marca xis na matriz na posição aleatoria
-                    marca_posicao[colunaRandom][linhaRandom] = 'X';// Marca xis na matriz na posição aleatoria
+                if (valida_posicao[linhaRandom][colunaRandom] == false) { //Se a posição estiver vazia, faça:
+                    valida_posicao[linhaRandom][colunaRandom] = "xis"; // Marca xis na matriz na posição aleatoria
+                    marca_posicao[linhaRandom][colunaRandom] = 'X';// Marca xis na matriz na posição aleatoria
 
                     document.getElementById("pos"+colunaRandom+linhaRandom).style.backgroundImage = 'url("images/xis.jpg")';
                     player--;
                     jogadas++;
                     document.getElementById("vez").innerHTML = 'Vez de O';
                     console.log('Entrou no if')
+                    getRandomInt(0,2)
+
                 } else { // se a posição de valida_posição[x][y] estiver ocupada:
                     getRandomInt(0,2);
+                    console.log(player);
+                    console.log('Entrou no else')
                 }
             }
         }
