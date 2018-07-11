@@ -24,76 +24,42 @@ function clic(coluna,linha){
             jogadas++;
             console.log(jogadas);
             document.getElementById("vez").innerHTML = 'Vez de X';
-
-        } else if (player == 2){
-            valida_posicao[coluna][linha] = "xis";
-            document.getElementById("pos"+coluna+linha).style.backgroundImage = 'url("images/xis.jpg")';
-            marca_posicao[coluna][linha] = 'X';
-            player--;
-            jogadas++;
-            console.log(jogadas);
-            document.getElementById("vez").innerHTML = 'Vez de O';
+            console.log(valida_posicao);
+            console.log(marca_posicao);  
         }
-    }
+        fimDeJogo()
 
-    fimDeJogo();
-}
-
-function clic(coluna,linha){
+        function vezCpu() {
+            if (player == 2){
+                var colunaRandom;
+                var linhaRandom;
+                /* Gera 2 números aleatórios (linha,coluna) entre 0 e 2(valores possiveis da matriz [0][0] até [2][2]) */
+                getRandomInt(0,2);
+                function getRandomInt(min, max) {
+                    min = Math.ceil(min);
+                    max = Math.floor(max);
+                    colunaRandom = Math.floor(Math.random() * (max - min)) + min;
+                    linhaRandom = Math.floor(Math.random() * (max - min)) + min;
+                }
     
-    if(valida_posicao[coluna][linha] == 0 && ha_vencedor == false){
-        if(player == 1) {
-            valida_posicao[coluna][linha] = "bola";
-            document.getElementById("pos"+coluna+linha).style.backgroundImage = 'url("images/bola.jpg")';
-            marca_posicao[coluna][linha] = 'O';
-            player++;
-            jogadas++;
-            console.log(jogadas);
-            document.getElementById("vez").innerHTML = 'Vez de X';
-
-        } else if (player == 2){
-
-            /* Gera 2 números aleatórios (linha,coluna) entre 0 e 2(valores possiveis da matriz [0][0] até [2][2]) */
-            getRandomInt(0,2);
-            function getRandomInt(min, max) {
-                min = Math.ceil(min);
-                max = Math.floor(max);
-                var colunaRandom = Math.floor(Math.random() * (max - min)) + min;
-                var linhaRandom = Math.floor(Math.random() * (max - min)) + min;
-
                 if (valida_posicao[colunaRandom][linhaRandom] == false) { //Se a posição estiver vazia, faça:
                     valida_posicao[colunaRandom][linhaRandom] = "xis"; // Marca xis na matriz na posição aleatoria
                     marca_posicao[colunaRandom][linhaRandom] = 'X';// Marca xis na matriz na posição aleatoria
-                    document.getElementById("pos"+coluna+linha).style.backgroundImage = 'url("images/xis.jpg")';
+
+                    document.getElementById("pos"+colunaRandom+linhaRandom).style.backgroundImage = 'url("images/xis.jpg")';
                     player--;
                     jogadas++;
                     document.getElementById("vez").innerHTML = 'Vez de O';
-                } else { // se a posição de valida_posição[x][y]estiver ocupada:
-                    while (valida_posicao[colunaRandom][linhaRandom] != false){ /*Enquanto valida_posição estiver
-                        diferente de vazio: */
-                        colunaRandom = Math.floor(Math.random() * (max - min)) + min; //Gerará um novo valor aleatorio(Coluna)
-                        linhaRandom = Math.floor(Math.random() * (max - min)) + min; //Gerará um novo valor aleatorio(Linha)
-                    }
-                    // Se chegou nessa etapa é porque valida_posição[x][y] está vazia, então faça:
-                    valida_posicao[colunaRandom][linhaRandom] = "xis";
-                    marca_posicao[colunaRandom][linhaRandom] = 'X';
-                    document.getElementById("pos"+coluna+linha).style.backgroundImage = 'url("images/xis.jpg")';
-                    player--;
-                    jogadas++;
-                    document.getElementById("vez").innerHTML = 'Vez de O';
+                    console.log('Entrou no if')
+                } else { // se a posição de valida_posição[x][y] estiver ocupada:
+                    getRandomInt(0,2);
                 }
             }
-
-            valida_posicao[coluna][linha] = "xis";
-            document.getElementById("pos"+coluna+linha).style.backgroundImage = 'url("images/xis.jpg")';
-            marca_posicao[coluna][linha] = 'X';
-            player--;
-            jogadas++;
-            document.getElementById("vez").innerHTML = 'Vez de O';
         }
+        vezCpu();
     }
 
-    fimDeJogo();
+ fimDeJogo();
 }
 
 /*  Player O CPU (Inacabado)
