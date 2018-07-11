@@ -16,22 +16,22 @@ var marca_posicao =  [
 document.getElementById("vez").innerHTML = 'Vez de O';
 function clic(coluna,linha){
     
-console.log(valida_posicao[coluna][linha])
+console.log(valida_posicao[linha][coluna])
     
-    if(valida_posicao[coluna][linha] == 0 && ha_vencedor == false){
+    if(valida_posicao[linha][coluna] == 0 && ha_vencedor == false){
         if(player == 1) {
-            valida_posicao[coluna][linha] = "bola";
+            valida_posicao[linha][coluna] = "bola";
             document.getElementById("pos"+coluna+linha).style.backgroundImage = 'url("images/bola.jpg")';
-            marca_posicao[coluna][linha] = 'O';
+            marca_posicao[linha][coluna] = 'O';
             player++;
             jogadas++;
             console.log(jogadas);
             document.getElementById("vez").innerHTML = 'Vez de X';
 
         } else if (player == 2){
-            valida_posicao[coluna][linha] = "xis";
+            valida_posicao[linha][coluna] = "xis";
             document.getElementById("pos"+coluna+linha).style.backgroundImage = 'url("images/xis.jpg")';
-            marca_posicao[coluna][linha] = 'X';
+            marca_posicao[linha][coluna] = 'X';
             player--;
             jogadas++;
             console.log(jogadas);
