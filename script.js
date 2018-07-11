@@ -13,59 +13,62 @@ var marca_posicao =  [
     [false,false,false], 
 ];
 
-function clic(coluna,linha){
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+var linhaRandom = getRandomInt(0,2);
+var colunaRandom = getRandomInt(0,2);
 
+function play(linha,coluna){
     
-    if(valida_posicao[linha][coluna] == 0 && ha_vencedor == false){
+    if(valida_posicao[linha][coluna] == false && ha_vencedor == false){
         if(player == 1) {
             valida_posicao[linha][coluna] = "bola";
-            document.getElementById("pos"+coluna+linha).style.backgroundImage = 'url("images/bola.jpg")';
+            document.getElementById("pos"+linha+coluna).style.backgroundImage = 'url("images/bola.jpg")';
             marca_posicao[linha][coluna] = 'O';
             player++;
             jogadas++;
             console.log(jogadas);
             document.getElementById("vez").innerHTML = 'Vez de X';
             console.log(valida_posicao);
-            console.log(marca_posicao);  
+            console.log(marca_posicao);
+            vezCpu();  
+        } else {
         }
         fimDeJogo()
-
-        function vezCpu() {
-            if (player == 2){
-                var colunaRandom;
-                var linhaRandom;
-                /* Gera 2 números aleatórios (linha,coluna) entre 0 e 2(valores possiveis da matriz [0][0] até [2][2]) */
-                getRandomInt(0,2);
-                function getRandomInt(min, max) {
-                    min = Math.ceil(min);
-                    max = Math.floor(max);
-                    linhaRandom = Math.floor(Math.random() * (max - min)) + min;
-                    colunaRandom = Math.floor(Math.random() * (max - min)) + min;
-                }
-    
-                if (valida_posicao[linhaRandom][colunaRandom] == false) { //Se a posição estiver vazia, faça:
-                    valida_posicao[linhaRandom][colunaRandom] = "xis"; // Marca xis na matriz na posição aleatoria
-                    marca_posicao[linhaRandom][colunaRandom] = 'X';// Marca xis na matriz na posição aleatoria
-
-                    document.getElementById("pos"+colunaRandom+linhaRandom).style.backgroundImage = 'url("images/xis.jpg")';
-                    player--;
-                    jogadas++;
-                    document.getElementById("vez").innerHTML = 'Vez de O';
-                    console.log('Entrou no if')
-                    getRandomInt(0,2)
-
-                } else { // se a posição de valida_posição[x][y] estiver ocupada:
-                    getRandomInt(0,2);
-                    console.log(player);
-                    console.log('Entrou no else')
-                }
-            }
-        }
-        vezCpu();
+    } else {
+        alert("Posição já marcada!")
     }
-
- fimDeJogo();
 }
+
+function vezCpu() {
+    if (player == 2){
+        if (valida_posicao[linhaRandom][colunaRandom] == false) { //Se a posição estiver vazia, faça:
+            valida_posicao[linhaRandom][colunaRandom] = "xis"; // Marca xis na matriz na posição aleatoria
+            marca_posicao[linhaRandom][colunaRandom] = 'X';// Marca xis na matriz na posição aleatoria
+
+            document.getElementById("pos"+linhaRandom+colunaRandom).style.backgroundImage = 'url("images/xis.jpg")';
+            player--;
+            jogadas++;
+            document.getElementById("vez").innerHTML = 'Vez de O';
+            console.log('Entrou no if')
+            getRandomInt(0,2)
+            fimDeJogo()
+
+        } else if (jogadas < 9){ // se a posição de valida_posição[x][y] estiver ocupada:
+            console.log('Entrou no else')
+            linhaRandom = getRandomInt(0,3);
+            colunaRandom = getRandomInt(0,3);
+            console.log(linhaRandom);
+            console.log(colunaRandom);
+            fimDeJogo()
+            vezCpu();
+        }
+    }
+}
+
 
 /*  Player O CPU (Inacabado)
 
@@ -153,6 +156,4 @@ function fimDeJogo(){
 }
 
 
-/*var gameOver = false;
-
-if (gameOver) {return;} // Se game over for verdadeiro, não executará o bloco */    
+  
