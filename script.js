@@ -46,7 +46,7 @@ function play(linha,coluna){
 }
 
 function vezCpu() {
-    if (player == 2){
+    if (player == 2 && ha_vencedor == false){
 
         if (marca_posicao[0][0] == 'O' && marca_posicao[0][1] == 'O' && marca_posicao[0][2] == false ){
         insereX(0,2);
@@ -123,24 +123,18 @@ function vezCpu() {
             insereX(2,0);
             marca_posicao[2][0] = 'X'
         }                      
-        
-        
-        
-        
-        
-        
-        
+
         else if (marca_posicao[linhaRandom][colunaRandom] == false) {
             marca_posicao[linhaRandom][colunaRandom] = "xis";
             marca_posicao[linhaRandom][colunaRandom] = 'X';
             document.getElementById("pos"+linhaRandom+colunaRandom).style.backgroundImage = 'url("images/xis.jpg")';
             document.getElementById("vez").innerHTML = 'Vez de O';
             getRandomInt(0,2)
-        } else if (jogadas < 9){
+        } else if (jogadas < 9) {
             linhaRandom = getRandomInt(0,3);
             colunaRandom = getRandomInt(0,3);
             
-            window.setTimeout('vezCpu()', 500);
+            vezCpu();
             jogadas--;
             player++;
         }
@@ -152,38 +146,61 @@ function vezCpu() {
     }
 }
 
+function isLineFilledBy(line, char){
+    if (marca_posicao[line][0] == char && marca_posicao[line][1] == char && marca_posicao[line][2] == char){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function isColumnFilledBy(column, char){
+    if (marca_posicao[0][column] == char && marca_posicao[1][column] == char && marca_posicao[2][column] == char){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function isPrimaryDiagonalFilled(char){
+    if (marca_posicao[0][0] == char && marca_posicao[1][1] == char && marca_posicao[2][2] == char){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function isSecondaryDiagonalFilled(char){
+    if (marca_posicao[2][0] == char && marca_posicao[1][1] == char && marca_posicao[0][2] == char){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 function fimDeJogo(){
 
-    if
-    (marca_posicao[0][0] == 'O' && marca_posicao[0][1] == 'O' && marca_posicao[0][2] == 'O' ||
-     marca_posicao[1][0] == 'O' && marca_posicao[1][1] == 'O' && marca_posicao[1][2] == 'O' ||
-     marca_posicao[2][0] == 'O' && marca_posicao[2][1] == 'O' && marca_posicao[2][2] == 'O' ||
-     marca_posicao[0][0] == 'O' && marca_posicao[1][0] == 'O' && marca_posicao[2][0] == 'O' ||
-     marca_posicao[0][1] == 'O' && marca_posicao[1][1] == 'O' && marca_posicao[2][1] == 'O' ||
-     marca_posicao[2][2] == 'O' && marca_posicao[1][2] == 'O' && marca_posicao[0][2] == 'O' ||  
-     marca_posicao[0][0] == 'O' && marca_posicao[1][1] == 'O' && marca_posicao[2][2] == 'O' ||
-     marca_posicao[2][0] == 'O' && marca_posicao[1][1] == 'O' && marca_posicao[0][2] == 'O')
-     
-    {
-        document.getElementById("vez").style.color = 'red';
-        document.getElementById("vez").innerHTML = 'Bola Ganhou';
-        ha_vencedor = true;
-
-    } else if
-    (marca_posicao[0][0] == 'X' && marca_posicao[0][1] == 'X' && marca_posicao[0][2] == 'X' ||
-     marca_posicao[1][0] == 'X' && marca_posicao[1][1] == 'X' && marca_posicao[1][2] == 'X' ||
-     marca_posicao[2][0] == 'X' && marca_posicao[2][1] == 'X' && marca_posicao[2][2] == 'X' ||
-     marca_posicao[0][0] == 'X' && marca_posicao[1][0] == 'X' && marca_posicao[2][0] == 'X' ||
-     marca_posicao[0][1] == 'X' && marca_posicao[1][1] == 'X' && marca_posicao[2][1] == 'X' ||
-     marca_posicao[2][2] == 'X' && marca_posicao[1][2] == 'X' && marca_posicao[0][2] == 'X' ||  
-     marca_posicao[0][0] == 'X' && marca_posicao[1][1] == 'X' && marca_posicao[2][2] == 'X' ||
-     marca_posicao[2][0] == 'X' && marca_posicao[1][1] == 'X' && marca_posicao[0][2] == 'X')
-    { 
+    if (
+        isLineFilledBy(0,'X') || isLineFilledBy(1,'X') || isLineFilledBy(2,'X') ||
+        isColumnFilledBy(0,'X') || isColumnFilledBy(1,'X') || isColumnFilledBy(2,'X') ||
+        isPrimaryDiagonalFilled('X') || isSecondaryDiagonalFilled('X')
+    )   {
         document.getElementById("vez").style.color = 'red';
         document.getElementById("vez").innerHTML = 'X Ganhou';
         ha_vencedor = true;
 
-    } else if (jogadas == 9) {
+    } else if (
+        isLineFilledBy(0,'O') || isLineFilledBy(1,'O') || isLineFilledBy(2,'O') ||
+        isColumnFilledBy(0,'O') || isColumnFilledBy(1,'O') || isColumnFilledBy(2,'O') ||
+        isPrimaryDiagonalFilled('O') || isSecondaryDiagonalFilled('O')
+    )   {
+        document.getElementById("vez").style.color = 'red';
+        document.getElementById("vez").innerHTML = 'Bola Ganhou';
+        ha_vencedor = true;
+
+    } else if (jogadas == 9) 
+    {
         document.getElementById("vez").style.color = 'red';
         document.getElementById("vez").innerHTML = 'Deu velha';
     }
