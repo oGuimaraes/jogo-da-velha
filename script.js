@@ -178,7 +178,6 @@ function isSecondaryDiagonalFilled(char){
     }
 }
 
-
 function fimDeJogo(){
 
     if (
