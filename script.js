@@ -8,8 +8,8 @@ var marca_posicao =  [
     [false,false,false], 
 ];
 
-document.getElementById("vez").innerHTML = 'Vez de O';
-document.getElementById("jogadas").innerHTML ='Jogadas feitas: '+jogadas;
+document.getElementById('vez').innerHTML = 'Vez de O';
+document.getElementById('jogadas').innerHTML ='Jogadas feitas: '+jogadas;
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -20,27 +20,25 @@ var linhaRandom = getRandomInt(0,2);
 var colunaRandom = getRandomInt(0,2);
 
 function insereX(linha,coluna){
-    document.getElementById("pos"+linha+coluna).style.backgroundImage = 'url("images/xis.jpg")';
+    document.getElementById('pos'+linha+coluna).style.backgroundImage = 'url("images/xis.jpg")';
 }
 
 function play(linha,coluna){
     
     if(marca_posicao[linha][coluna] == false && ha_vencedor == false){
         if(player == 1) {
-            marca_posicao[linha][coluna] = "bola";
-            document.getElementById("pos"+linha+coluna).style.backgroundImage = 'url("images/bola.jpg")';
+            marca_posicao[linha][coluna] = 'bola';
+            document.getElementById('pos'+linha+coluna).style.backgroundImage = 'url("images/bola.jpg")';
             marca_posicao[linha][coluna] = 'O';
             player++;
             jogadas++;
-            document.getElementById("vez").innerHTML = 'Vez de X';
-            console.log(marca_posicao);
+            document.getElementById('vez').innerHTML = 'Vez de X';
             window.setTimeout('vezCpu()', 1000); 
-            console.log(jogadas);
         } else {
         }
         fimDeJogo()
     } else {
-        alert("Posição já marcada!")
+        alert('Posição já marcada!')
 
     }
 }
@@ -125,10 +123,10 @@ function vezCpu() {
         }                      
 
         else if (marca_posicao[linhaRandom][colunaRandom] == false) {
-            marca_posicao[linhaRandom][colunaRandom] = "xis";
+            marca_posicao[linhaRandom][colunaRandom] = 'xis';
             marca_posicao[linhaRandom][colunaRandom] = 'X';
-            document.getElementById("pos"+linhaRandom+colunaRandom).style.backgroundImage = 'url("images/xis.jpg")';
-            document.getElementById("vez").innerHTML = 'Vez de O';
+            document.getElementById('pos'+linhaRandom+colunaRandom).style.backgroundImage = 'url("images/xis.jpg")';
+            document.getElementById('vez').innerHTML = 'Vez de O';
             getRandomInt(0,2)
         } else if (jogadas < 9) {
             linhaRandom = getRandomInt(0,3);
@@ -140,9 +138,8 @@ function vezCpu() {
         }
         jogadas++;
         player--;
-        document.getElementById("jogadas").innerHTML ='Numero de jogadas:'+ jogadas;
+        document.getElementById('jogadas').innerHTML ='Numero de jogadas:'+ jogadas;
         fimDeJogo()
-        console.log('Player: '+player);
     }
 }
 
@@ -185,8 +182,8 @@ function fimDeJogo(){
         isColumnFilledBy(0,'X') || isColumnFilledBy(1,'X') || isColumnFilledBy(2,'X') ||
         isPrimaryDiagonalFilled('X') || isSecondaryDiagonalFilled('X')
     )   {
-        document.getElementById("vez").style.color = 'red';
-        document.getElementById("vez").innerHTML = 'X Ganhou';
+        document.getElementById('vez').style.color = 'red';
+        document.getElementById('vez').innerHTML = 'X Ganhou';
         ha_vencedor = true;
 
     } else if (
@@ -203,11 +200,7 @@ function fimDeJogo(){
         document.getElementById("vez").style.color = 'red';
         document.getElementById("vez").innerHTML = 'Deu velha';
     }
-
 }
-
-
-/* CPU Intelligence */
 
 
 
