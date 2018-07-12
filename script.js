@@ -1,17 +1,15 @@
 var player = 1;
 var jogadas = 0;
 var ha_vencedor = false;
-var valida_posicao = [
-    [false,false,false], // valida_posicao[0][0],valida_posicao[0][1],valida_posicao[0][2],
-    [false,false,false], // valida_posicao[1][0],valida_posicao[1][1],valida_posicao[1][2],
-    [false,false,false], // valida_posicao[2][0],valida_posicao[2][1],valida_posicao[2][2],
-];
 
 var marca_posicao =  [
     [false,false,false],
     [false,false,false], 
     [false,false,false], 
 ];
+
+document.getElementById("vez").innerHTML = 'Vez de O';
+document.getElementById("jogadas").innerHTML ='Jogadas feitas: '+jogadas;
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -21,51 +19,136 @@ function getRandomInt(min, max) {
 var linhaRandom = getRandomInt(0,2);
 var colunaRandom = getRandomInt(0,2);
 
+function insereX(linha,coluna){
+    document.getElementById("pos"+linha+coluna).style.backgroundImage = 'url("images/xis.jpg")';
+}
+
 function play(linha,coluna){
     
-    if(valida_posicao[linha][coluna] == false && ha_vencedor == false){
+    if(marca_posicao[linha][coluna] == false && ha_vencedor == false){
         if(player == 1) {
-            valida_posicao[linha][coluna] = "bola";
+            marca_posicao[linha][coluna] = "bola";
             document.getElementById("pos"+linha+coluna).style.backgroundImage = 'url("images/bola.jpg")';
             marca_posicao[linha][coluna] = 'O';
             player++;
             jogadas++;
-            console.log(jogadas);
             document.getElementById("vez").innerHTML = 'Vez de X';
-            console.log(valida_posicao);
             console.log(marca_posicao);
-            vezCpu();  
+            window.setTimeout('vezCpu()', 1000); 
+            console.log(jogadas);
         } else {
         }
         fimDeJogo()
     } else {
         alert("Posição já marcada!")
+
     }
 }
 
 function vezCpu() {
     if (player == 2){
-        if (valida_posicao[linhaRandom][colunaRandom] == false) { //Se a posição estiver vazia, faça:
-            valida_posicao[linhaRandom][colunaRandom] = "xis"; // Marca xis na matriz na posição aleatoria
-            marca_posicao[linhaRandom][colunaRandom] = 'X';// Marca xis na matriz na posição aleatoria
 
+        if (marca_posicao[0][0] == 'O' && marca_posicao[0][1] == 'O' && marca_posicao[0][2] == false ){
+        insereX(0,2);
+        marca_posicao[0][2] = 'X'
+        } else if (marca_posicao[0][0] == 'O' && marca_posicao[0][2] == 'O' && marca_posicao[0][1] == false ){
+            insereX(0,1);
+            marca_posicao[0][1] = 'X'
+        } else if (marca_posicao[0][1] == 'O' && marca_posicao[0][2] == 'O' && marca_posicao[0][0] == false ){
+            insereX(0,0);
+            marca_posicao[0][0] = 'X'
+        } else if (marca_posicao[1][0] == 'O' && marca_posicao[1][1] == 'O' && marca_posicao[1][2] == false ){
+            insereX(1,2);
+            marca_posicao[1][2] = 'X'
+        } else if (marca_posicao[1][0] == 'O' && marca_posicao[1][2] == 'O' && marca_posicao[1][1] == false ){
+            insereX(1,1);
+            marca_posicao[1][1] = 'X'
+        } else if (marca_posicao[1][1] == 'O' && marca_posicao[1][2] == 'O' && marca_posicao[1][0] == false ){
+            insereX(1,0);
+            marca_posicao[1][0] = 'X'
+        } else if (marca_posicao[2][0] == 'O' && marca_posicao[2][1] == 'O' && marca_posicao[2][2] == false ){
+            insereX(2,2);
+            marca_posicao[2][2] = 'X'
+        } else if (marca_posicao[2][1] == 'O' && marca_posicao[2][2] == 'O' && marca_posicao[2][0] == false ){
+            insereX(2,0);
+            marca_posicao[2][0] = 'X'
+        } else if (marca_posicao[2][0] == 'O' && marca_posicao[2][2] == 'O' && marca_posicao[2][1] == false ){
+            insereX(2,1);
+            marca_posicao[2][1] = 'X'
+        } else if (marca_posicao[0][0] == 'O' && marca_posicao[1][0] == 'O' && marca_posicao[2][0] == false ){
+            insereX(2,0);
+            marca_posicao[2][0] = 'X'
+        } else if (marca_posicao[0][0] == 'O' && marca_posicao[2][0] == 'O' && marca_posicao[1][0] == false ){
+            insereX(1,0);
+            marca_posicao[1][0] = 'X'
+        } else if (marca_posicao[1][0] == 'O' && marca_posicao[2][0] == 'O' && marca_posicao[0][0] == false ){
+            insereX(0,0);
+            marca_posicao[0][0] = 'X'
+        } else if (marca_posicao[0][1] == 'O' && marca_posicao[1][1] == 'O' && marca_posicao[2][1] == false ){
+            insereX(2,1);
+            marca_posicao[2][1] = 'X'
+        } else if (marca_posicao[0][1] == 'O' && marca_posicao[2][1] == 'O' && marca_posicao[1][1] == false ){
+            insereX(1,1);
+            marca_posicao[1][1] = 'X'
+        } else if (marca_posicao[1][1] == 'O' && marca_posicao[2][1] == 'O' && marca_posicao[0][1] == false ){
+            insereX(0,1);
+            marca_posicao[0][1] = 'X'
+        } else if (marca_posicao[1][2] == 'O' && marca_posicao[2][2] == 'O' && marca_posicao[0][2] == false ){
+            insereX(0,2);
+            marca_posicao[0][2] = 'X'
+        } else if (marca_posicao[0][2] == 'O' && marca_posicao[2][2] == 'O' && marca_posicao[1][2] == false ){
+            insereX(1,2);
+            marca_posicao[1][2] = 'X'
+        } else if (marca_posicao[0][2] == 'O' && marca_posicao[1][2] == 'O' && marca_posicao[2][2] == false ){
+            insereX(2,2);
+            marca_posicao[2][2] = 'X'
+
+        } else if (marca_posicao[0][0] == 'O' && marca_posicao[1][1] == 'O' && marca_posicao[2][2] == false ){
+            insereX(2,2);
+            marca_posicao[2][2] = 'X'
+        } else if (marca_posicao[0][0] == 'O' && marca_posicao[2][2] == 'O' && marca_posicao[1][1] == false ){
+            insereX(1,1);
+            marca_posicao[1][1] = 'X'
+        } else if (marca_posicao[1][1] == 'O' && marca_posicao[2][2] == 'O' && marca_posicao[0][0] == false ){
+            insereX(0,0);
+            marca_posicao[1][1] = 'X'
+
+        } else if (marca_posicao[2][0] == 'O' && marca_posicao[1][1] == 'O' && marca_posicao[0][2] == false ){
+            insereX(0,2);
+            marca_posicao[0][2] = 'X'
+        } else if (marca_posicao[2][0] == 'O' && marca_posicao[0][2] == 'O' && marca_posicao[1][1] == false ){
+            insereX(1,1);
+            marca_posicao[1][1] = 'X'
+        } else if (marca_posicao[1][1] == 'O' && marca_posicao[0][2] == 'O' && marca_posicao[2][0] == false ){
+            insereX(2,0);
+            marca_posicao[2][0] = 'X'
+        }                      
+        
+        
+        
+        
+        
+        
+        
+        else if (marca_posicao[linhaRandom][colunaRandom] == false) {
+            marca_posicao[linhaRandom][colunaRandom] = "xis";
+            marca_posicao[linhaRandom][colunaRandom] = 'X';
             document.getElementById("pos"+linhaRandom+colunaRandom).style.backgroundImage = 'url("images/xis.jpg")';
-            player--;
-            jogadas++;
             document.getElementById("vez").innerHTML = 'Vez de O';
-            console.log('Entrou no if')
             getRandomInt(0,2)
-            fimDeJogo()
-
-        } else if (jogadas < 9){ // se a posição de valida_posição[x][y] estiver ocupada:
-            console.log('Entrou no else')
+        } else if (jogadas < 9){
             linhaRandom = getRandomInt(0,3);
             colunaRandom = getRandomInt(0,3);
-            console.log(linhaRandom);
-            console.log(colunaRandom);
-            fimDeJogo()
-            vezCpu();
+            
+            window.setTimeout('vezCpu()', 500);
+            jogadas--;
+            player++;
         }
+        jogadas++;
+        player--;
+        document.getElementById("jogadas").innerHTML ='Numero de jogadas:'+ jogadas;
+        fimDeJogo()
+        console.log('Player: '+player);
     }
 }
 
@@ -82,7 +165,7 @@ function fimDeJogo(){
      marca_posicao[2][0] == 'O' && marca_posicao[1][1] == 'O' && marca_posicao[0][2] == 'O')
      
     {
-        $( "h3" ).effect( "bounce", "slow" );
+        document.getElementById("vez").style.color = 'red';
         document.getElementById("vez").innerHTML = 'Bola Ganhou';
         ha_vencedor = true;
 
@@ -96,17 +179,20 @@ function fimDeJogo(){
      marca_posicao[0][0] == 'X' && marca_posicao[1][1] == 'X' && marca_posicao[2][2] == 'X' ||
      marca_posicao[2][0] == 'X' && marca_posicao[1][1] == 'X' && marca_posicao[0][2] == 'X')
     { 
-        $( "h3" ).effect( "bounce", "slow" );
+        document.getElementById("vez").style.color = 'red';
         document.getElementById("vez").innerHTML = 'X Ganhou';
         ha_vencedor = true;
 
     } else if (jogadas == 9) {
-        $( "h3" ).effect( "bounce", "slow" );
+        document.getElementById("vez").style.color = 'red';
         document.getElementById("vez").innerHTML = 'Deu velha';
     }
 
 }
 
 
-/* CPU Intelligence
+/* CPU Intelligence */
+
+
+
 
