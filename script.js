@@ -1,4 +1,4 @@
-var player = 1;
+
 var jogadas = 0;
 var ha_vencedor = false;
 
@@ -16,8 +16,15 @@ function getRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
 }
-var linhaRandom = getRandomInt(0, 2);
-var colunaRandom = getRandomInt(0, 2);
+var linhaRandom = getRandomInt(0, 3);
+var colunaRandom = getRandomInt(0, 3);
+
+var player = getRandomInt(1, 3);
+console.log(player)
+if (player == 2) {
+    document.getElementById('vez').innerHTML = 'Vez de X';
+    window.setTimeout('vezCpu()', 1000);
+}
 
 function insertChar(line, column, char){
     var image;
@@ -61,9 +68,68 @@ function isColumnFilledBy(column, char){
 }
 
 function vezCpu() {
-    if (player == 2 && ha_vencedor == false){  
-        
-        if (marca_posicao[0][0] == 'O' && marca_posicao[0][1] == 'O' && marca_posicao[0][2] == false ){
+    if (player == 2 && ha_vencedor == false){
+
+        if (marca_posicao[1][1] == false && jogadas !== 0) {
+            insertChar(1, 1, 'X');
+        }
+        else if (marca_posicao[0][0] == 'X' && marca_posicao[0][1] == 'X' && marca_posicao[0][2] == false ){
+            insertChar(0, 2, 'X');
+        } else if (marca_posicao[0][0] == 'X' && marca_posicao[0][2] == 'X' && marca_posicao[0][1] == false ){
+            insertChar(0, 1, 'X');
+        } else if (marca_posicao[0][1] == 'X' && marca_posicao[0][2] == 'X' && marca_posicao[0][0] == false ){
+            insertChar(0, 0, 'X');
+        } else if (marca_posicao[1][0] == 'X' && marca_posicao[1][1] == 'X' && marca_posicao[1][2] == false ){
+            insertChar(1, 2, 'X');
+        } else if (marca_posicao[1][0] == 'X' && marca_posicao[1][2] == 'X' && marca_posicao[1][1] == false ){
+            insertChar(1, 1, 'X');
+        } else if (marca_posicao[1][1] == 'X' && marca_posicao[1][2] == 'X' && marca_posicao[1][0] == false ){
+            insertChar(1, 0, 'X');
+        } else if (marca_posicao[2][0] == 'X' && marca_posicao[2][1] == 'X' && marca_posicao[2][2] == false ){
+            insertChar(2, 2, 'X');
+        } else if (marca_posicao[2][0] == 'X' && marca_posicao[2][2] == 'X' && marca_posicao[2][1] == false ){
+            insertChar(2, 1, 'X');
+        } else if (marca_posicao[2][1] == 'X' && marca_posicao[2][2] == 'X' && marca_posicao[2][0] == false ){
+            insertChar(2, 0, 'X');
+
+        } else if (marca_posicao[0][0] == 'X' && marca_posicao[1][0] == 'X' && marca_posicao[2][0] == false ){
+            insertChar(2, 0, 'X');
+        } else if (marca_posicao[0][0] == 'X' && marca_posicao[2][0] == 'X' && marca_posicao[1][0] == false ){
+            insertChar(1, 0, 'X');
+        } else if (marca_posicao[1][0] == 'X' && marca_posicao[2][0] == 'X' && marca_posicao[0][0] == false ){
+            insertChar(0, 0, 'X');
+
+        } else if (marca_posicao[0][1] == 'X' && marca_posicao[1][1] == 'X' && marca_posicao[2][1] == false ){
+            insertChar(2, 1, 'X');
+        } else if (marca_posicao[0][1] == 'X' && marca_posicao[2][1] == 'X' && marca_posicao[1][1] == false ){
+            insertChar(1, 1, 'X');
+        } else if (marca_posicao[1][1] == 'X' && marca_posicao[2][1] == 'X' && marca_posicao[0][1] == false ){
+            insertChar(0, 1, 'X');
+
+        } else if (marca_posicao[1][2] == 'X' && marca_posicao[2][2] == 'X' && marca_posicao[0][2] == false ){
+            insertChar(0, 2, 'X');
+        } else if (marca_posicao[0][2] == 'X' && marca_posicao[2][2] == 'X' && marca_posicao[1][2] == false ){
+            insertChar(1, 2, 'X');
+        } else if (marca_posicao[0][2] == 'X' && marca_posicao[1][2] == 'X' && marca_posicao[2][2] == false ){
+            insertChar(0, 2, 'X');
+
+        } else if (marca_posicao[0][0] == 'X' && marca_posicao[1][1] == 'X' && marca_posicao[2][2] == false ){
+            insertChar(2, 2, 'X');
+
+        } else if (marca_posicao[0][0] == 'X' && marca_posicao[2][2] == 'X' && marca_posicao[1][1] == false ){
+            insertChar(1, 1, 'X');
+        } else if (marca_posicao[1][1] == 'X' && marca_posicao[2][2] == 'X' && marca_posicao[0][0] == false ){
+            insertChar(0, 0, 'X');
+
+        } else if (marca_posicao[2][0] == 'X' && marca_posicao[1][1] == 'X' && marca_posicao[0][2] == false ){
+            insertChar(0, 2, 'X');
+        } else if (marca_posicao[2][0] == 'X' && marca_posicao[0][2] == 'X' && marca_posicao[1][1] == false ){
+            insertChar(1, 1, 'X');
+        } else if (marca_posicao[1][1] == 'X' && marca_posicao[0][2] == 'X' && marca_posicao[2][0] == false ){
+            insertChar(2, 0, 'X');
+        }  
+
+        else if (marca_posicao[0][0] == 'O' && marca_posicao[0][1] == 'O' && marca_posicao[0][2] == false ){
             insertChar(0, 2, 'X');
         } else if (marca_posicao[0][0] == 'O' && marca_posicao[0][2] == 'O' && marca_posicao[0][1] == false ){
             insertChar(0, 1, 'X');
