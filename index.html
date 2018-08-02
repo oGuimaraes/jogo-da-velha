@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Jogo da Velha</title>
+<title>Tic-Tac-Toe</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 </head>
 
 <body>
-<fieldset align="center" class="tabuleiro">
-    <h2>Jogo da Velha</h2>
+<fieldset align="center" class="board">
+    <h2>Tic-Tac-Toe</h2>
     <table>
         <tr> 
             <td><div class="cell" id="pos00" onclick="play(0, 0)">0,0</div></td>
@@ -28,9 +28,9 @@
         </tr>
 
     </table>
-    <div class="tabela-de-informacoes">
-        <h3 id="vez"></h3>
-        <h3 id="jogadas"></h3>
+    <div class="info-table">
+        <h3 id="turn"></h3>
+        <h3 id="plays"></h3>
     </div>
     </fieldset>
 </body>
