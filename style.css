@@ -2,7 +2,7 @@ body{
     font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
-.tabuleiro{
+.board{
     background: #c3d9ff; /* Old browsers */
     background: -moz-linear-gradient(top, #c3d9ff 0%, #b1c8ef 41%, #98b0d9 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, #c3d9ff 0%,#b1c8ef 41%,#98b0d9 100%); /* Chrome10-25,Safari5.1-6 */
